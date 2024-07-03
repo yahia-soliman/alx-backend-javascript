@@ -1,24 +1,42 @@
-interface Student {
-  firstName: string;
-  lastName: string;
-  age: number;
+export interface Teacher {
+  readonly firstName: string;
+  readonly lastName: string;
+  fullTimeEmployee: boolean;
+  yearsOfExperience?: number;
   location: string;
+  [s: string]: unknown;
 }
 
-const student1: Student = {
-  firstName: 'Ali',
-  lastName: 'Alocka',
-  age: 22,
-  location: 'Attaba',
-};
+export interface Directors extends Teacher {
+  numberOfReports: number;
+}
 
-const student2: Student = {
-  firstName: 'Ashraf',
-  lastName: 'Kohka',
-  age: 20,
-  location: 'Mahalla',
-};
+export function printTeacher(firstName: string, lastName: string): string {
+  return `${firstName[0]}. ${lastName}`;
+}
 
-const studentsList: Student[] = [student1, student2];
+interface StudentInterface {
+  firstName: string;
+  lastName: string;
 
-console.table(studentsList, ['firstName', 'location']);
+  workOnHomework(): string;
+  displayName(): string;
+}
+
+export class StudentClass implements StudentInterface {
+  firstName: string;
+  lastName: string;
+
+  constructor(firstName: string, lastName: string) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  workOnHomework(): string {
+    return 'Currently working';
+  }
+
+  displayName(): string {
+    return this.firstName;
+  }
+}
