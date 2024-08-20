@@ -4,6 +4,7 @@ function displayStudents(data) {
   const lines = data.split('\n');
   const fieldIdx = lines[0].split(',').findIndex((o) => o === 'field');
   const studentsByField = {};
+  let content = '';
   let n = 0;
   for (let i = 1; i < lines.length; i += 1) {
     const student = lines[i].split(',');
@@ -14,20 +15,25 @@ function displayStudents(data) {
       n += 1;
     }
   }
-  if (n) console.log(`Number of students: ${n}`);
+  if (n) content = `Number of students: ${n}\n`;
   for (const field in studentsByField) {
     if (studentsByField[field]) {
       const list = studentsByField[field];
-      console.log(`Number of students in ${field}: ${list.length}. List: ${list.join(', ')}`);
+      content += `Number of students in ${field}: ${list.length}. List: ${list.join(', ')}\n`;
     }
   }
+  return content;
 }
 
 async function countStudents(path) {
   return new Promise((resolve, reject) => {
     fs.readFile(path, { encoding: 'utf8' }, (err, data) => {
       if (err) reject(Error('Cannot load the database'));
-      else resolve(displayStudents(data));
+      else {
+        const content = displayStudents(data);
+        process.stdout.write(content);
+        resolve(content);
+      }
     });
   });
 }
