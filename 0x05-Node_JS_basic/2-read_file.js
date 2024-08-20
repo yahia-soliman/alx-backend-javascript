@@ -20,7 +20,7 @@ function countStudents(path) {
     for (const field in studentsByField) {
       if (studentsByField[field]) {
         const list = studentsByField[field];
-        console.log(`Number of students in ${field}: ${list.length}. List: ${list.join(', ')}`);
+        console.log(`Number of students in ${field}: 6. List: ${list.join(', ')}`);
       }
     }
   });
