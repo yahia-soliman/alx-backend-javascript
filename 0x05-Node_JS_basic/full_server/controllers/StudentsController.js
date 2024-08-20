@@ -3,11 +3,13 @@ import readDatabase from '../utils';
 export default class StudentsController {
   static getAllStudents(_, response) {
     readDatabase(process.argv[2] || '').then((school) => {
-      response.write('This is the list of our students');
-      for (const major of school) {
-        response.write(`\nNumber of students in ${major}: ${school[major].length}. List: ${school[major].join(', ')}`);
+      let page = 'This is the list of our students';
+      for (const major in school) {
+        if (major && school[major]) {
+          page += `\nNumber of students in ${major}: ${school[major].length}. List: ${school[major].join(', ')}`;
+        }
       }
-      response.end();
+      response.send(page);
     }).catch(() => response.status(500).send('Cannot load the database'));
   }
 
