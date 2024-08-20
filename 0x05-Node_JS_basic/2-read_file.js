@@ -16,13 +16,14 @@ function countStudents(path) {
         n += 1;
       }
     }
-    console.log(`Number of students: ${n}`);
+    if (n) console.log(`Number of students: ${n}`);
     for (const field in studentsByField) {
       if (studentsByField[field]) {
         const list = studentsByField[field];
-        console.log(`Number of students in ${field}: 6. List: ${list.join(', ')}`);
+        console.log(`Number of students in ${field}: ${list.length}. List: ${list.join(', ')}`);
       }
     }
   });
 }
+
 module.exports = countStudents;
