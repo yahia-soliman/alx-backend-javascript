@@ -4,7 +4,6 @@ function displayStudents(data) {
   const lines = data.split('\n');
   const fieldIdx = lines[0].split(',').findIndex((o) => o === 'field');
   const studentsByField = {};
-  let content = '';
   let n = 0;
   for (let i = 1; i < lines.length; i += 1) {
     const student = lines[i].split(',');
@@ -15,16 +14,13 @@ function displayStudents(data) {
       n += 1;
     }
   }
-  if (n) content = `Number of students: ${n}\n`;
+  if (n) console.log(`Number of students: ${n}`);
   for (const field in studentsByField) {
     if (studentsByField[field]) {
       const list = studentsByField[field];
-      content += `Number of students in ${field}: ${list.length}. List: ${list.join(', ')}\n`;
+      console.log(`Number of students in ${field}: ${list.length}. List: ${list.join(', ')}`);
     }
   }
-  content = content.slice(0, content.length - 1);
-  console.log(content);
-  return content;
 }
 
 async function countStudents(path) {
