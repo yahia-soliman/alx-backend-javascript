@@ -22,6 +22,8 @@ function displayStudents(data) {
       content += `Number of students in ${field}: ${list.length}. List: ${list.join(', ')}\n`;
     }
   }
+  content = content.slice(0, content.length - 1);
+  console.log(content);
   return content;
 }
 
@@ -29,11 +31,7 @@ async function countStudents(path) {
   return new Promise((resolve, reject) => {
     fs.readFile(path, { encoding: 'utf8' }, (err, data) => {
       if (err) reject(Error('Cannot load the database'));
-      else {
-        const content = displayStudents(data);
-        process.stdout.write(content);
-        resolve(content);
-      }
+      else resolve(displayStudents(data));
     });
   });
 }
