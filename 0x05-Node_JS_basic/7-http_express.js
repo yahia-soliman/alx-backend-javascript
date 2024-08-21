@@ -3,8 +3,6 @@ const fs = require('fs');
 
 const app = express();
 
-const DB_PATH = process.argv[2] || '';
-
 function displayStudents(data, res) {
   const lines = data.split('\n');
   const fieldIdx = lines[0].split(',').findIndex((o) => o === 'field');
@@ -42,7 +40,7 @@ app.get('/', (_, res) => {
   res.send('Hello Holberton School!');
 });
 app.get('/students', async (_, res) => {
-  await writeStudents(DB_PATH, res);
+  await writeStudents(process.argv[2] || '', res);
   res.end();
 });
 

@@ -1,8 +1,6 @@
 const http = require('http');
 const fs = require('fs');
 
-const DB_PATH = process.argv[2] || '';
-
 function displayStudents(data, res) {
   const lines = data.split('\n');
   const fieldIdx = lines[0].split(',').findIndex((o) => o === 'field');
@@ -38,7 +36,7 @@ async function writeStudents(dbpath, res) {
 
 const app = http.createServer(async (req, res) => {
   if (req.url === '/') res.write('Hello Holberton School!');
-  if (req.url === '/students') await writeStudents(DB_PATH, res);
+  if (req.url === '/students') await writeStudents(process.argv[2] || '', res);
   res.end('');
 });
 
