@@ -37,7 +37,7 @@ async function writeStudents(dbpath, res) {
 const app = http.createServer(async (req, res) => {
   if (req.url === '/') res.write('Hello Holberton School!');
   if (req.url === '/students') await writeStudents(process.argv[2] || '', res);
-  res.end('');
+  res.end();
 });
 
 app.listen(1245);
