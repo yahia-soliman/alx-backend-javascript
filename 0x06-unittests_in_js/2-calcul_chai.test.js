@@ -1,8 +1,9 @@
 const { expect } = require("chai");
-const calculateNumber = require("./1-calcul.js");
+const calculateNumber = require("./2-calcul_chai.js");
 
 describe("calculate sum of 2 numbers", () => {
-  it("1 + 3 = 4", () => expect(calculateNumber("SUM", 1, 3)).to.equal(4));
+  it("1 + 3 = 4", () =>
+    expect(calculateNumber("SUM", 1, 3)).to.equal(4));
   it("1 + 3.7 = 5", () =>
     expect(calculateNumber("SUM", 1, 3.7)).to.equal(5));
   it("1.2 + 3.7 = 5", () =>
